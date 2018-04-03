@@ -7,14 +7,18 @@
             status-im.data-store.core
             [status-im.ui.screens.desktop.views :as views]
             [status-im.core :as core]
-            [status-im.ui.components.react :as react]))
+            [status-im.ui.components.react :as react]
+            ))
 
 (defn app-root []
   (reagent/create-class
     {:component-will-mount
                      (fn []
-                       (.hide react/splash-screen))
+                       ;(.hide react/splash-screen)
+                         )
+
      :reagent-render views/main}))
+
 
 (defn init []
   (core/init app-root))
