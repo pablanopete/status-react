@@ -16,7 +16,8 @@
     "node_modules/react-native-linear-gradient/desktop",
     "node_modules/react-native-fs/desktop",
     "node_modules/react-native-http-bridge/desktop",
-    "node_modules/react-native-webview-bridge/desktop"
+    "node_modules/react-native-webview-bridge/desktop",
+    "modules/react-native-status/desktop"
   ],
   "dependencies": {
     "assert": "1.4.1",

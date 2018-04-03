@@ -239,6 +239,7 @@
 (defn app-state-change [state]
   (.appStateChange status state))
 
+(enable-console-print!)
 (defrecord ReactNativeStatus []
   module/IReactNativeStatus
   ;; status-go calls

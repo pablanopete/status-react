@@ -33,6 +33,7 @@
     "react-native-linear-gradient",
     "react-native-qrcode",
     "react-native-randombytes",
+    "react-native-status",
     "react-native-webview-bridge",
     "readable-stream",
     "realm",
