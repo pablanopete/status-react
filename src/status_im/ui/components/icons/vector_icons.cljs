@@ -68,15 +68,17 @@
         (if platform/ios? :icons/dots-horizontal :icons/dots-vertical)
         n))
 
-(def default-viewbox {:width 24 :height 24 :background-color :blue})
+(def default-viewbox {:width 24 :height 24})
 
 (defn icon
       ([name] (icon name nil))
-      ([name {:keys [color container-style style accessibility-label]
+      ([name {:keys [color container-style style accessibility-label width height]
               :or {accessibility-label :icon}}]
-        (print "Icon")
+        (let [icon-style (if width
+                           (assoc default-viewbox :width width :height height)
+                           default-viewbox)]
         [react/view {:style               container-style
                      :accessibility-label accessibility-label}
          [react/image {:source (get icons (normalize-property-name name))
-                       :style  (merge default-viewbox style)}]]))
+                       :style  (merge icon-style style)}]])))
 

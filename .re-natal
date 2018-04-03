@@ -27,6 +27,7 @@
     "react-native-config",
     "react-native-crypto",
     "react-native-fs",
+    "react-native-fetch-polyfill",
     "react-native-http-bridge",
     "react-native-i18n",
     "react-native/Libraries/vendor/emitter/EventEmitter",
