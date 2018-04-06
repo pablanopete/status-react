@@ -76,6 +76,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
                             .setPrimaryColor("#1D82DC")
                             .setFloatingEdge("left")
                             .setFloatingButtonOffsetFromTop(250)
+                            .setIntroMessageEnabled(false)
                             .build()
                                                                                     ));
 
