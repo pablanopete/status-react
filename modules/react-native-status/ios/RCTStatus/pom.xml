@@ -25,7 +25,7 @@
                         <artifactItem>
                             <groupId>status-im</groupId>
                             <artifactId>status-go-ios-simulator</artifactId>
-                            <version>bugfix-jenkins-test-stage-dir-g9f6b92b0-139</version>
+                            <version>develop-ge9c22927</version>
                             <type>zip</type>
                             <overWrite>true</overWrite>
                             <outputDirectory>./</outputDirectory>
