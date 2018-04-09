@@ -21,8 +21,10 @@
           status-message        (-> payload
                                     transport.utils/to-utf8
                                     transit/deserialize)]
-      (when (and sig status-message)
-        (message/receive status-message (or chat-id sig) sig cofx)))))
+      (if (and sig status-message)
+        (if (transit/unknown-message-type? status-message)
+          (log/error "Your version of Status is outdated and was not able to process a message you received")
+          (message/receive status-message (or chat-id sig) sig cofx))))))
 
 (handlers/register-handler-fx
   :protocol/send-status-message-success
