@@ -127,7 +127,7 @@
                            (assoc-in [:accounts/create :step] :enter-name))
        :dispatch-n (concat
                      [[:stop-debugging]
-                      (when (:sharing-usage-data? (accounts address)) [:register-mixpanel-tracking address])
+                      (when (:sharing-usage-data? (accounts address)) [:register-usage-data-tracking address])
                       [:initialize-account address
                        (when (not= view-id :create-account)
                          [[:navigate-to-clean :home]])]])}

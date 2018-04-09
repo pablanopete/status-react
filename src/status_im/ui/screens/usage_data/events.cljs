@@ -8,8 +8,8 @@
     (let [{:keys [sharing-usage-data?]} (get accounts current-account-id)]
       (merge (accounts/account-update {:sharing-usage-data? yes?} {:db db})
              {:dispatch-n [(if yes?
-                             [:register-mixpanel-tracking address]
+                             [:register-usage-data-tracking address]
                              (when (and next sharing-usage-data?)
-                               [:unregister-mixpanel-tracking]))
+                               [:unregister-usage-data-tracking]))
                            (or next [:navigate-to-clean :home])]}))))
 

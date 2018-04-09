@@ -41,7 +41,7 @@
             [status-im.utils.notifications :as notifications]
             [status-im.utils.handlers :as handlers]
             [status-im.utils.http :as http]
-            [status-im.utils.instabug :as inst]
+            [status-im.utils.instabug :as instabug]
             [status-im.utils.mixpanel :as mixpanel]
             [status-im.utils.platform :as platform]
             [status-im.utils.types :as types]
@@ -230,7 +230,7 @@
                                                [:listen-to-network-status]
                                                [:navigate-to :accounts]]
                                               (when sharing-usage-data?
-                                                [[:unregister-mixpanel-tracking]]))}
+                                                [[:unregister-usage-data-tracking]]))}
                          (transport/stop-whisper)))))
 
 (handlers/register-handler-fx
@@ -333,18 +333,19 @@
 (defn- track [id event]
   (let [anonid (ethereum/sha3 id)]
     (doseq [{:keys [label properties]} (mixpanel/matching-events event mixpanel/event-by-trigger)]
-      (mixpanel/track anonid label properties))))
+      (mixpanel/track anonid label properties)
+      (instabug/track label properties))))
 
-(def hook-id :mixpanel-callback)
+(def hook-id :usage-data-callback)
 
 (handlers/register-handler-fx
-  :register-mixpanel-tracking
+  :register-usage-data-tracking
   (fn [_ [_ id]]
     (re-frame/add-post-event-callback hook-id #(track id %))
     nil))
 
 (handlers/register-handler-fx
-  :unregister-mixpanel-tracking
+  :unregister-usage-data-tracking
   (fn []
     (re-frame/remove-post-event-callback hook-id)
     nil))
@@ -378,7 +379,7 @@
   :signal-event
   (fn [_ [_ event-str]]
     (log/debug :event-str event-str)
-    (inst/log (str "Signal event: " event-str))
+    (instabug/log (str "Signal event: " event-str))
     (let [{:keys [type event]} (types/json->clj event-str)
           to-dispatch (case type
                         "transaction.queued" [:transaction-queued event]
