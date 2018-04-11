@@ -27,8 +27,6 @@
 
 (def default-network config/default-network)
 
-(def contract-address "0x0000000000000000000000000000000000000000")
-
 (def system "system")
 
 (def default-wallet-transactions
